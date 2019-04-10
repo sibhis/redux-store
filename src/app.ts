@@ -21,16 +21,27 @@ button.addEventListener(
       type: 'ADD_TODO',
       payload: payload
     })
-    console.log(store.value);
+    //console.log(store.value);
     input.value = '';
   },
   false
 );
 
+const unsubscribe = store.subscribe(state => {
+  renderTodos(state.todos.data)
+})
+destroy.addEventListener('click',unsubscribe,false)
+// destroy.addEventListener('click',
+//   ()=> {
+//   console.log('tets');
+//   },
+//   false
+// );
 todoList.addEventListener('click', function(event) {
   const target = event.target as HTMLButtonElement;
   if (target.nodeName.toLowerCase() === 'button') {
     console.log(target);
   }
 });
+
 store.subscribe(state => console.log('STATE::',state))
